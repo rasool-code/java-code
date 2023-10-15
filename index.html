@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <pre>
+            <!-- 1. Create an array with the values (1, 2, 3, 4, 5, 6, 7) and shuffle it. -->
+            <P>1. Create an array with the values (1, 2, 3, 4, 5, 6, 7) and shuffle it.</P>
+            import java.util.ArrayList;
+            import java.util.Collections;
+            
+            public class Example {
+                public static void main(String[] args) {
+                   
+                    ArrayList<Integer> numbers = new ArrayList<>();
+                    numbers.add(1);
+                    numbers.add(2);
+                    numbers.add(3);
+                    numbers.add(4);
+                    numbers.add(5);
+                    numbers.add(6);
+                    numbers.add(7);
+            
+                    Collections.shuffle(numbers);
+            
+                    
+                    Integer[] shuffledArray = numbers.toArray(new Integer[0]);
+                    
+                    // Print the shuffled array
+                    System.out.println("Shuffled Array: ");
+                    for (int num : shuffledArray) {
+                        System.out.print(num + " ");
+                    }
+                }
+            }
+            <P>output :</P>
+            Microsoft Windows [Version 10.0.22621.2283]
+            (c) Microsoft Corporation. All rights reserved.
+            
+            D:\>javac Shuffle.java
+            
+            D:\>java Shuffle
+            Shuffled Array:
+            6 5 7 4 2 1 3
+            D:\>javac Shuffle.java
+            
+            D:\>java Shuffle
+            Shuffled Array:
+            7 3 5 6 2 1 4
+            D:\>
+
+        </pre>
+    </div>
+    <hr>
+    <div>
+        <pre>
+            <!-- 2. Enter a Roman Number as input and convert it to an integer. (Example: IX = 9) -->
+            <P> 2. Enter a Roman Number as input and convert it to an integer. (Example: IX = 9)</P>
+            import java.util.HashMap;
+            import java.util.Scanner;
+            
+            public class RomanToInteger {
+                public static int romanToInt(String s) {
+                    HashMap<Character, Integer> romanNumerals = new HashMap<>();
+                    romanNumerals.put('I', 1);
+                    romanNumerals.put('V', 5);
+                    romanNumerals.put('X', 10);
+            
+                    romanNumerals.put('L', 50);
+                    romanNumerals.put('C', 100);
+                    romanNumerals.put('D', 500);
+                    romanNumerals.put('M', 1000);
+                    
+                    int total = 0;
+                    int prevValue = 0;
+                    
+                    for (int i = s.length() - 1; i >= 0; i--) {
+                        char currentSymbol = s.charAt(i);
+                        int currentValue = romanNumerals.get(currentSymbol);
+                        
+                        if (currentValue < prevValue) {
+                            total -= currentValue;
+                        } else {
+                            total += currentValue;
+                        }
+                        
+                        prevValue = currentValue;
+                    }
+                    
+                    return total;
+                }
+                
+                public static void main(String[] args) {
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.print("Enter a Roman numeral: ");
+                    String romanNumeral = scanner.nextLine();
+                    int integerValue = romanToInt(romanNumeral.toUpperCase());
+                    System.out.println("The integer representation of " + romanNumeral + " is: " + integerValue);
+                }
+            }
+            <p>output :</p>
+            Microsoft Windows [Version 10.0.22621.2283]
+            (c) Microsoft Corporation. All rights reserved.
+            
+            D:\>javac RomanToInteger.java
+            
+            D:\>java RomanToInteger
+            Enter a Roman numeral: IV
+            The integer representation of IV is: 4
+            
+            D:\>javac RomanToInteger.java
+            
+            D:\>java RomanToInteger
+            Enter a Roman numeral: II
+            The integer representation of II is: 2
+            
+            D:\>
+            
+
+        </pre>
+    </div>
+    <hr>
+    <div>
+        <pre>
+            <!-- 3. Check if the input is pangram or not. (A pangram is a sentence that contains all the 
+            alphabets from A to Z)-->
+            <P>3. Check if the input is pangram or not. (A pangram is a sentence that contains all the
+                alphabets from A to Z)</P>
+                import java.util.HashSet;
+                import java.util.Scanner;
+                import java.util.Set;
+                
+                public class Pangram {
+                    public static boolean isPangram(String sentence) {
+                        Set<Character> alphabetSet = new HashSet<>();
+                        for (char ch = 'a'; ch <= 'z'; ch++) {
+                            alphabetSet.add(ch);
+                        }
+                
+                        for (char ch : sentence.toLowerCase().toCharArray()) {
+                            if (alphabetSet.contains(ch)) {
+                                alphabetSet.remove(ch);
+                            }
+                
+                            // If all the letters are found, the set will be empty
+                            if (alphabetSet.isEmpty()) {
+                                return true;
+                            }
+                        }
+                
+                        return false;
+                    }
+                
+                    public static void main(String[] args) {
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.print("Enter a sentence: ");
+                        String inputSentence = scanner.nextLine();
+                
+                        if (isPangram(inputSentence)) {
+                            System.out.println("The input is a pangram.");
+                        } else {
+                            System.out.println("The input is not a pangram.");
+                        }
+                    }
+                }
+                <p>output :</p>
+                Microsoft Windows [Version 10.0.22621.2283]
+                (c) Microsoft Corporation. All rights reserved.
+                
+                D:\>javac Pangram.java
+                
+                D:\>java Pangram
+                Enter a sentence: The quick brown fox jumps over the lazy dog
+                The input is a pangram.
+                
+                D:\>javac Pangram.java
+                
+                D:\>java Pangram
+                Enter a sentence: java program
+                The input is not a pangram.
+                
+                D:\>
+        </pre>
+    </div>
+</body>
+</html>
